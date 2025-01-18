@@ -1,0 +1,37 @@
+<!-- Scanning Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanning</title>
+</head>
+<body>
+    <nav>
+        <a href="scanning.html">Scanning</a>
+        <a href="summarisation.html">Summarisation</a>
+        <a href="qa.html">QA</a>
+    </nav>
+
+    <div class="content">
+        <h1>Scanning</h1>
+        <button onclick="startCamera()">Start Camera</button>
+        <video id="camera" autoplay style="display:none; margin-top: 20px;"></video>
+    </div>
+
+    <script>
+        function startCamera() {
+            const video = document.getElementById('camera');
+            video.style.display = 'block';
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    video.srcObject = stream;
+                })
+                .catch(error => {
+                    alert('Unable to access the camera.');
+                    console.error(error);
+                });
+        }
+    </script>
+</body>
+</html>
